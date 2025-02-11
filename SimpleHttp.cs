@@ -69,12 +69,12 @@ public class SimpleHttp
         return this;
     }
 
-    public async Task<SimpleHttpResponse?> PostAsync()
+    public async Task<SimpleHttpResponse?> PutAsync()
     {
         if (_url is null) throw new NullReferenceException("Url has not been set");
         try
         {
-            var result = await _httpClient.PostAsync(_url, _body is null ? null : new StringContent(_body));
+            var result = await _httpClient.PutAsync(_url, _body is null ? null : new StringContent(_body));
             var content = await result.Content.ReadAsStringAsync();
             return new SimpleHttpResponse((int)result.StatusCode, content);
         }
@@ -85,12 +85,12 @@ public class SimpleHttp
         }
     }
 
-    public async Task<SimpleHttpResponse<T>?> PostAsync<T>()
+    public async Task<SimpleHttpResponse<T>?> PutAsync<T>()
     {
         if (_url is null) throw new NullReferenceException("Url has not been set");
         try
         {
-            var result = await _httpClient.PostAsync(_url, _body is null ? null : new StringContent(_body));
+            var result = await _httpClient.PutAsync(_url, _body is null ? null : new StringContent(_body));
             var content = await result.Content.ReadAsStringAsync();
             return new SimpleHttpResponse<T>((int)result.StatusCode, content);
         }

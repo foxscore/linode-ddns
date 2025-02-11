@@ -78,7 +78,7 @@ while (true)
                 .WithHeader("Authorization", $"Bearer {config.ApiKey}")
                 .WithHeader("Accept", "application/json")
                 .WithBody(body)
-                .PostAsync<ListDomainRecordsBodyItem>();
+                .PutAsync<ListDomainRecordsBodyItem>();
             if (postResult is not { StatusCode: 200, ParsedBody: not null })
                 Log.Error($"Failed to update domain record for {domainId} ({postResult?.StatusCode}: {postResult?.Body ?? "<no_message>"})");
             else if (postResult.ParsedBody.Target != publicIp)
