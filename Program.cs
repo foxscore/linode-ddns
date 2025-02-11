@@ -77,7 +77,6 @@ while (true)
                 .WithUrl($"https://api.linode.com/v4/domains/{domainId}/records/{record.Id}")
                 .WithHeader("Authorization", $"Bearer {config.ApiKey}")
                 .WithHeader("Accept", "application/json")
-                .WithHeader("Content-Type", "application/json")
                 .WithBody(body)
                 .PostAsync<ListDomainRecordsBodyItem>();
             if (postResult is not { StatusCode: 200, ParsedBody: not null })
